@@ -166,14 +166,52 @@ ifeq ($(do_linux_tools),true)
  endif
 endif
 
-	# The main image
-	install -m600 -D $(build_dir)/$(kernfile) \
-		$(pkgdir_bin)/boot/$(instfile)-$(abi_release)-$*
 	install -d $(pkgdir)/boot
 	install -m644 $(build_dir)/.config \
 		$(pkgdir)/boot/config-$(abi_release)-$*
 	install -m600 $(build_dir)/System.map \
 		$(pkgdir)/boot/System.map-$(abi_release)-$*
+
+ifeq ($(do_stubble),true)
+	# Build kernel+stub image
+	/usr/bin/ukify build --linux=$(build_dir)/$(kernfile) \
+	        --stub=/usr/lib/stubble/stubble.efi \
+	        --hwids=/usr/share/stubble/hwids \
+	        --sbat="@/usr/share/stubble/sbat" \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e001de-devkit.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-crd.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus13.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus15.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14-lcd.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb \
+		--devicetree-auto=$(build_dir)/arch/arm64/boot/dts/qcom/x1p64100-acer-swift-sf14-11.dtb \
+	        --output=$(build_dir)/$(kernfile).stubble
+
+	# The main image
+	install -m600 -D $(build_dir)/$(kernfile).stubble \
+		$(pkgdir)/boot/$(instfile)-$(abi_release)-$*
+else
+	# The main image
+	install -m600 -D $(build_dir)/$(kernfile) \
+		$(pkgdir_bin)/boot/$(instfile)-$(abi_release)-$*
+endif
 
 ifeq ($(do_dtbs),true)
 	$(kmake) O=$(build_dir) $(conc_level) dtbs_install \
