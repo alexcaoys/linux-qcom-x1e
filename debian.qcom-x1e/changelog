@@ -1,3 +1,13 @@
+linux-qcom-x1e (6.17.0-4.4) plucky; urgency=medium
+
+  * dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch
+  * arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: add HDMI nodes
+  * phy: qcom: qmp-combo: get default qmpphy_mode from DT
+  * dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Document default phy mode
+  * arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13: Set up 4-lane DP
+
+ -- Tobias Heider <tobias.heider@canonical.com>  Thu, 28 Aug 2025 00:13:57 +0200
+
 linux-qcom-x1e (6.17.0-3.3) plucky; urgency=medium
 
   * Add qcom-x1e packaging
