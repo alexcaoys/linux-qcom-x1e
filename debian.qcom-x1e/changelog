@@ -1,3 +1,26 @@
+linux-qcom-x1e (6.17.0-5.5) plucky; urgency=medium
+
+  * phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
+  * dt-bindings: phy: qcom: Add MIPI CSI2 C-PHY/DPHY Combo schema
+  * arm64: dts: qcom: x1e80100-dell-xps13-9345: Switch to CSIPHY4 description
+  * arm64: dts: qcom: x1e80100-dell-xps13-9345: add camera support
+  * arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add OV02E10 RGB sensor on CSIPHY4
+  * arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add pm8010 camera PMIC with voltage levels for IR and RGB camera
+  * arm64: dts: qcom: x1e80100-t14s: Add on ov02c10 RGB sensor on CSIPHY4
+  * arm64: dts: qcom: x1e80100-t14s: Add pm8010 camera PMIC with voltage levels for IR and RGB camera
+  * arm64: dts: qcom: x1e80100-crd: Add ov08x40 RGB sensor on CSIPHY4
+  * arm64: dts: qcom: x1e80100-crd: Add pm8010 CRD pmic,id=m regulators
+  * arm64: dts: qcom: x1e80100: Add CAMSS block definition
+  * arm64: dts: qcom: x1e80100: Add MIPI CSI PHY nodes
+  * arm64: dts: qcom: x1e80100: Add CCI definitions
+  * arm64: dts: qcom: x1e80100: Add CAMCC block definition
+  * media: qcom: camss: Add support for PHY API devices
+  * media: qcom: camss: Add legacy_phy flag to SoC definition structures
+  * dt-bindings: media: qcom,x1e80100-camss: Convert from inline PHY definitions to PHY handles
+  * dt-bindings: media: qcom,x1e80100-camss: Assign correct main register bank to first address
+
+ -- Tobias Heider <tobias.heider@canonical.com>  Thu, 28 Aug 2025 14:07:38 +0200
+
 linux-qcom-x1e (6.17.0-4.4) plucky; urgency=medium
 
   * dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch
