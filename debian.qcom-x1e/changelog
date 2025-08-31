@@ -1,4 +1,10 @@
-linux-qcom-x1e (6.17.0-5.5) plucky; urgency=medium
+linux-qcom-x1e (6.17.0-8.8) plucky; urgency=medium
+
+  * Enable CONFIG_VIDEO_OV02E10=m for camera on Dell Latitude
+
+ -- Tobias Heider <tobias.heider@canonical.com>  Sun, 31 Aug 2025 21:33:36 +0200
+
+linux-qcom-x1e (6.17.0-7.7) plucky; urgency=medium
 
   * phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
   * dt-bindings: phy: qcom: Add MIPI CSI2 C-PHY/DPHY Combo schema
