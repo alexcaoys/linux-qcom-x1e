@@ -147,6 +147,8 @@ clean: debian/control debian/canonical-certs.pem debian/canonical-revoked-certs.
 
 	rm -f debian/scripts/fix-filenames
 
+	make mrproper
+
 .PHONY: distclean
 distclean: clean
 	rm -rf debian/control debian/changelog
